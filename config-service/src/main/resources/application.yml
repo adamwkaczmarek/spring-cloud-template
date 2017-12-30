@@ -1,12 +1,3 @@
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
 server:
    port: 8888
 spring:
@@ -14,7 +5,11 @@ spring:
     active: native
   cloud:
      config:
-       server:
+      discovery:
+        enabled: true
+      server:
            native:
                searchLocations: classpath:config/,classpath:config/aboutservice
+
+
 
