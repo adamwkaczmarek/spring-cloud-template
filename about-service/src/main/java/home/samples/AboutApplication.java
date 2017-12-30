@@ -1,5 +1,6 @@
 package home.samples;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -16,10 +17,14 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class AboutApplication {
 
+    @Value("${example.property}")
+    private String exampleProperty;
+
+
     @RequestMapping("/about")
     @ResponseBody
     String about() {
-        return "Some information about project";
+        return "Some information about project . Example property from config server : "+exampleProperty;
     }
 
     public static void main(String[] args) {

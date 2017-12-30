@@ -9,7 +9,7 @@ spring:
         enabled: true
       server:
            native:
-               searchLocations: classpath:config/,classpath:config/aboutservice
+               searchLocations: classpath:config/,classpath:config/about-service
 
 
 

@@ -13,7 +13,7 @@ services:
          EUREKASERVER_PORT: "8761"
          ENCRYPT_KEY:       "IMSYMMETRIC"
 
-  zuulserver:
+  zuul-service:
     image: homesamples/zuul-service:homesamples
     ports:
       - "5555:5555"
@@ -25,17 +25,17 @@ services:
       EUREKASERVER_PORT:        "8761"
       CONFIGSERVER_PORT:        "8888"
 
-#  about-service:
-#      image: homesamples/about-service:homesamples
-#      ports:
-#        - "8080:8080"
-#        - "8090:8090"
-#      environment:
-#        PROFILE: "default"
-#        SERVER_PORT: "8080"
-#        CONFIGSERVER_URI: "http://config-service:8888"
-#        EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
-#        CONFIGSERVER_PORT:   "8888"
-#        DATABASESERVER_PORT: "5432"
-#        EUREKASERVER_PORT:   "8761"
-#        ENCRYPT_KEY:       "IMSYMMETRIC"
+  about-service:
+      image: homesamples/about-service:homesamples
+      ports:
+        - "8080:8080"
+        - "8090:8090"
+      environment:
+        PROFILE: "default"
+        SERVER_PORT: "8080"
+        CONFIGSERVER_URI: "http://config-service:8888"
+        EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
+        CONFIGSERVER_PORT:   "8888"
+        DATABASESERVER_PORT: "5432"
+        EUREKASERVER_PORT:   "8761"
+        ENCRYPT_KEY:       "IMSYMMETRIC"
