@@ -1,15 +1,36 @@
 server:
-   port: 8888
+  port: 8888
 spring:
-  profiles:
-    active: native
   cloud:
-     config:
+    config:
       discovery:
         enabled: true
       server:
-           native:
-               searchLocations: classpath:config/,classpath:config/about-service
+        encrypt.enabled: false
+        git:
+          uri: https://github.com/adamwkaczmarek/spring-cloud-template-config/
+          searchPaths: about-service,zuul-service
+#          username: native-cloud-apps
+#          password: 0ffended
+
+
+
+####
+#Classpath and file-based solution
+####
+
+#server:
+#   port: 8888
+#spring:
+#  profiles:
+#    active: native
+#  cloud:
+#     config:
+#      discovery:
+#        enabled: true
+#      server:
+#           native:
+#               searchLocations: classpath:config/,classpath:config/about-service
 
 
 
