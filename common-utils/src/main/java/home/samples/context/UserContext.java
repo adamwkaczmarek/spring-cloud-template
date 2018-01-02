@@ -1,4 +1,4 @@
-package home.samples.utils;
+package home.samples.context;
 
 import org.springframework.stereotype.Component;
 
