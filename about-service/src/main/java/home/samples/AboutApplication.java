@@ -1,5 +1,6 @@
 package home.samples;
 
+import home.samples.utils.UserContextHolder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class AboutApplication {
 
+
+
     @Value("${example.property}")
     private String exampleProperty;
 
@@ -24,7 +27,8 @@ public class AboutApplication {
     @RequestMapping("/about")
     @ResponseBody
     String about() {
-        return "Some information about project . Example property from config server : "+exampleProperty;
+        return "Some information about project . Example property from config server : "+exampleProperty+
+            "  Correlation ID : "+ UserContextHolder.getContext().getCorrelationId();
     }
 
     public static void main(String[] args) {
