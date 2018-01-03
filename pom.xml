@@ -15,6 +15,7 @@
         <module>eureka-service</module>
         <module>zuul-service</module>
         <module>common-utils</module>
+        <module>authentication-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
