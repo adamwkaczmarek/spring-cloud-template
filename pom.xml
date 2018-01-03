@@ -13,6 +13,8 @@
         <module>about-service</module>
         <module>config-service</module>
         <module>eureka-service</module>
+        <module>zuul-service</module>
+        <module>common-utils</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
