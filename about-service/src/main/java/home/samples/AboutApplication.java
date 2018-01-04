@@ -40,6 +40,12 @@ public class AboutApplication {
             "  Correlation ID : "+ UserContextHolder.getContext().getCorrelationId();
     }
 
+    @RequestMapping("/about-secured")
+    @ResponseBody
+    String aboutSecured() {
+        return "Some secured information about project";
+    }
+
     // HOW TO SET CORRELATION ID
     @LoadBalanced
     @Bean
