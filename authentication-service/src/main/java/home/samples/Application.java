@@ -20,11 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
-@EnableResourceServer
 @RestController
+@EnableResourceServer
+@EnableAuthorizationServer
 public class Application {
-
-
     @RequestMapping(value = { "/user" }, produces = "application/json")
     public Map<String, Object> user(OAuth2Authentication user) {
         Map<String, Object> userInfo = new HashMap<>();
@@ -33,17 +32,10 @@ public class Application {
         return userInfo;
     }
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(
-                User.withUsername("deniss").password("deniss").roles("USER").build()
-        );
-        return manager;
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
 
 }
