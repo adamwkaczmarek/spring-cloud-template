@@ -17,6 +17,12 @@ echo "********************************************************"
 while ! `nc -z config-service $CONFIGSERVER_PORT`; do sleep 3; done
 echo "*******  Configuration Server has started"
 
+echo "********************************************************"
+echo "Waiting for the gateway to start on port $ZULLSERVER_PORT"
+echo "********************************************************"
+while ! `nc -z zuul-service $ZULLSERVER_PORT`; do sleep 3; done
+echo "*******  Zuul Server has started"
+
 
 echo "********************************************************"
 echo "Starting About-Service  "

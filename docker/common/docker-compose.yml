@@ -38,6 +38,7 @@ services:
         CONFIGSERVER_PORT:   "8888"
         DATABASESERVER_PORT: "5432"
         EUREKASERVER_PORT:   "8761"
+        ZULLSERVER_PORT: "5555"
         ENCRYPT_KEY:       "IMSYMMETRIC"
 
   authenticationservice:
