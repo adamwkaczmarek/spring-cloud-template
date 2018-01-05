@@ -14,13 +14,6 @@ eureka:
     serviceUrl:
         defaultZone: http://localhost:8761/eureka/
 
-server:
-  port: 8901
-  contextPath:   /auth
 
-security:
-  oauth2:
-    resource:
-      filter-order: 3
 
-signing.key: "qazwsx!2"
+

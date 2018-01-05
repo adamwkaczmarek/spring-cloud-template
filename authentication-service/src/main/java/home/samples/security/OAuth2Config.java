@@ -28,11 +28,10 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private TokenStore tokenStore;
 
-    @Autowired
-    private DefaultTokenServices tokenServices;
 
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
+
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -46,14 +45,12 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
-      TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-      tokenEnhancerChain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
 
 
-      endpoints
-              .tokenStore(tokenStore)
-              .accessTokenConverter(jwtAccessTokenConverter)
-              .authenticationManager(authenticationManager)
-              .userDetailsService(userDetailsService);
+      endpoints.tokenStore(tokenStore)                             //JWT
+                .accessTokenConverter(jwtAccessTokenConverter)       //JWT
+                .authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService);
     }
+
 }

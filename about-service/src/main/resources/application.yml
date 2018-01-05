@@ -17,6 +17,5 @@ logging:
 security:
  oauth2:
   resource:
-    filter-order: 3
     userInfoUri: http://localhost:8901/auth/user
 
