@@ -44,11 +44,13 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
 
 
-
-      endpoints.tokenStore(tokenStore)                             //JWT
-                .accessTokenConverter(jwtAccessTokenConverter)       //JWT
+      endpoints.tokenStore(tokenStore)
+                .accessTokenConverter(jwtAccessTokenConverter)
+                .tokenEnhancer(tokenEnhancerChain)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }
