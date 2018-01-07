@@ -1,6 +1,7 @@
 package home.samples.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,12 +33,22 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
+    @Value("${security.jwt.client-id}")
+    private String clientId;
+
+    @Value("${security.jwt.client-secret}")
+    private String clientSecret;
+
+   ;
+
+
+
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("eagleeye")
-                .secret("thisissecret")
+                .withClient(clientId)
+                .secret(clientSecret)
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
     }

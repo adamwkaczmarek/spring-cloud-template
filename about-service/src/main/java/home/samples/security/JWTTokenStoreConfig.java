@@ -1,7 +1,6 @@
 package home.samples.security;
 
-import home.samples.config.ServiceConfig;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -14,8 +13,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 public class JWTTokenStoreConfig {
 
-    @Autowired
-    private ServiceConfig serviceConfig;
+
+    @Value("${security.signing-key}")
+    private String jwtSigningKey;
 
     @Bean
     public TokenStore tokenStore() {
@@ -35,7 +35,7 @@ public class JWTTokenStoreConfig {
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(serviceConfig.getJwtSigningKey());
+        converter.setSigningKey(jwtSigningKey);
         return converter;
     }
 
