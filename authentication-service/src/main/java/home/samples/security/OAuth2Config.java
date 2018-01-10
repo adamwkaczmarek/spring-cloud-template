@@ -50,7 +50,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .withClient(clientId)
                 .secret(clientSecret)
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("webclient", "mobileclient");
+                .scopes("webclient", "mobileclient","deviceclient");
     }
 
     @Override
