@@ -1,8 +1,7 @@
 package home.samples.context;
 
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class UserContext {
 
 

@@ -2,6 +2,7 @@ package home.samples.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
@@ -13,10 +14,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@Component
 public class UserContextFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserContextFilter.class);
+    @Value("${spring.application.name}")
+    String appName;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,7 +32,7 @@ public class UserContextFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
         UserContextHolder.getContext().setCorrelationId(  httpServletRequest.getHeader(UserContext.CORRELATION_ID) );
-        LOGGER.debug("Incoming Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
+        LOGGER.debug("Incoming to {} Correlation id: {}",appName ,UserContextHolder.getContext().getCorrelationId());
 
         filterChain.doFilter(httpServletRequest, servletResponse);
 
