@@ -9,7 +9,4 @@ spring:
         encrypt.enabled: false
         git:
           uri: https://github.com/adamwkaczmarek/device-ms-config
-          searchPaths: zuul-service,authentication-service
-
-
-
+          searchPaths: zuul-service,authentication-service,device-controller-service,device-data-service,device-registration-service,device-state-service
