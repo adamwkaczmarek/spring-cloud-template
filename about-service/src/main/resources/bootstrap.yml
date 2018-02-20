@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: about-service
-  profiles:
-    active:
-      default
-  cloud:
-    config:
-      enabled: true

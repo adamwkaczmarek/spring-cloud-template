@@ -8,7 +8,6 @@ This project should be treated as a template for other  projects based on spring
 - configuration server
 - zull proxy (gateway)
 - authentication service (JWT token)
-- example of cloud-base application (about-service), which uses previous mentioned services
 
 ## OTHER FEATURES:
  - docker configuration
