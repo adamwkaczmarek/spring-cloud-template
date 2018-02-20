@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>about-service</module>
         <module>config-service</module>
         <module>eureka-service</module>
         <module>zuul-service</module>
