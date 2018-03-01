@@ -8,5 +8,5 @@ spring:
       server:
         encrypt.enabled: false
         git:
-          uri: https://github.com/adamwkaczmarek/device-ms-config
+          uri: https://github.com/adamwkaczmarek/spring-cloud-template-config
           searchPaths: zuul-service,authentication-service,device-controller-service,device-data-service,device-registration-service,device-state-service
