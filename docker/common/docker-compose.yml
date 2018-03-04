@@ -2,14 +2,16 @@ version: '2'
 services:
   eureka-service:
      image: akaczmarek/eureka-service:${BUILD_NAME}
-     mem_limit: 1500m
+     mem_limit: 3000m
      ports:
          - "8761:8761"
   config-service:
       image: akaczmarek/config-service:${BUILD_NAME}
-      mem_limit: 1500m
+      mem_limit: 3000m
       ports:
          - "8888:8888"
+      links:
+         - "eureka-service:eureka-service"
       environment:
          EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
          EUREKASERVER_PORT: "8761"
@@ -17,9 +19,12 @@ services:
 
   zuul-service:
     image: akaczmarek/zuul-service:${BUILD_NAME}
-    mem_limit: 1500m
+    mem_limit: 3000m
     ports:
       - "5555:5555"
+    links:
+      - "config-service:config-service"
+      - "eureka-service:eureka-service"
     environment:
       PROFILE: "aws-dev"
       SERVER_PORT: "5555"
@@ -31,9 +36,13 @@ services:
 
   authentication-service:
       image: akaczmarek/authentication-service:${BUILD_NAME}
-      mem_limit: 1500m
+      mem_limit: 3000m
       ports:
         - "8901:8901"
+      links:
+        - "config-service:config-service"
+        - "eureka-service:eureka-service"
+        - "zuul-service:zuul-service"
       environment:
         PROFILE: "aws-dev"
         SERVER_PORT: "8901"
