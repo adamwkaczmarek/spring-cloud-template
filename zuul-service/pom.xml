@@ -58,8 +58,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>home.samples.ZuulServerApplication</start-class>
         <java.version>1.8</java.version>
-        <docker.image.name>homesamples/zuul-service</docker.image.name>
-        <docker.image.tag>homesamples</docker.image.tag>
+        <docker.image.name>akaczmarek/zuul-service</docker.image.name>
+        <docker.image.tag>${env.BUILD_NAME}</docker.image.tag>
     </properties>
 
     <build>

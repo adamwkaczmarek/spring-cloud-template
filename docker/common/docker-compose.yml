@@ -1,11 +1,13 @@
 version: '2'
 services:
   eureka-service:
-     image: homesamples/eureka-service:homesamples
+     image: akaczmarek/eureka-service:${BUILD_NAME}
+     mem_limit: 1500m
      ports:
          - "8761:8761"
   config-service:
-      image: homesamples/config-service:homesamples
+      image: akaczmarek/config-service:${BUILD_NAME}
+      mem_limit: 1500m
       ports:
          - "8888:8888"
       environment:
@@ -14,7 +16,8 @@ services:
          ENCRYPT_KEY: "SPRING_CLOUD_DEV"
 
   zuul-service:
-    image: homesamples/zuul-service:homesamples
+    image: akaczmarek/zuul-service:${BUILD_NAME}
+    mem_limit: 1500m
     ports:
       - "5555:5555"
     environment:
@@ -27,7 +30,8 @@ services:
 
 
   authentication-service:
-      image: homesamples/authentication-service:homesamples
+      image: akaczmarek/authentication-service:${BUILD_NAME}
+      mem_limit: 1500m
       ports:
         - "8901:8901"
       environment:

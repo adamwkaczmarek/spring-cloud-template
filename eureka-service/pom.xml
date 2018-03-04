@@ -21,8 +21,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>home.samples.EurekaServerApplication</start-class>
         <java.version>1.8</java.version>
-        <docker.image.name>homesamples/eureka-service</docker.image.name>
-        <docker.image.tag>homesamples</docker.image.tag>
+        <docker.image.name>akaczmarek/eureka-service</docker.image.name>
+        <docker.image.tag>${env.BUILD_NAME}</docker.image.tag>
     </properties>
 
     <dependencyManagement>

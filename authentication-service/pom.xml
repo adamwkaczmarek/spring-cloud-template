@@ -19,8 +19,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>home.samples.Application</start-class>
         <java.version>1.8</java.version>
-        <docker.image.name>homesamples/authentication-service</docker.image.name>
-        <docker.image.tag>homesamples</docker.image.tag>
+        <docker.image.name>akaczmarek/authentication-service</docker.image.name>
+        <docker.image.tag>${env.BUILD_NAME}</docker.image.tag>
     </properties>
 
 
