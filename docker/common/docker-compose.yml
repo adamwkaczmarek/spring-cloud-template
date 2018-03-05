@@ -1,58 +1,54 @@
 version: '2'
 services:
   eureka-service:
-     image: homesamples/eureka-service:homesamples
+     image: akaczmarek/eureka-service:${BUILD_NAME}
+     mem_limit: 3000m
      ports:
          - "8761:8761"
   config-service:
-      image: homesamples/config-service:homesamples
+      image: akaczmarek/config-service:${BUILD_NAME}
+      mem_limit: 3000m
       ports:
          - "8888:8888"
+      links:
+         - "eureka-service:eureka-service"
       environment:
          EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
          EUREKASERVER_PORT: "8761"
-         ENCRYPT_KEY:       "IMSYMMETRIC"
+         ENCRYPT_KEY: "SPRING_CLOUD_DEV"
 
   zuul-service:
-    image: homesamples/zuul-service:homesamples
+    image: akaczmarek/zuul-service:${BUILD_NAME}
+    mem_limit: 3000m
     ports:
       - "5555:5555"
+    links:
+      - "config-service:config-service"
+      - "eureka-service:eureka-service"
     environment:
-      PROFILE: "default"
+      PROFILE: "aws-dev"
       SERVER_PORT: "5555"
       CONFIGSERVER_URI: "http://config-service:8888"
       EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
       EUREKASERVER_PORT:        "8761"
       CONFIGSERVER_PORT:        "8888"
 
-#  about-service:
-#      image: homesamples/about-service:homesamples
-#      ports:
-#        - "8080:8080"
-#        - "8090:8090"
-#      environment:
-#        PROFILE: "default"
-#        SERVER_PORT: "8080"
-#        CONFIGSERVER_URI: "http://config-service:8888"
-#        EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
-#        AUTHSERVER_URI:  "http://authentication-service:8901/auth/user"
-#        CONFIGSERVER_PORT:   "8888"
-#        DATABASESERVER_PORT: "5432"
-#        EUREKASERVER_PORT:   "8761"
-#        ZULLSERVER_PORT: "5555"
-#        AUTHSERVER_PORT: "8091"
-#        ENCRYPT_KEY:       "IMSYMMETRIC"
 
   authentication-service:
-      image: homesamples/authentication-service:homesamples
+      image: akaczmarek/authentication-service:${BUILD_NAME}
+      mem_limit: 3000m
       ports:
         - "8901:8901"
+      links:
+        - "config-service:config-service"
+        - "eureka-service:eureka-service"
+        - "zuul-service:zuul-service"
       environment:
-        PROFILE: "default"
+        PROFILE: "aws-dev"
         SERVER_PORT: "8901"
         DATABASE_PORT:     5432
         CONFIGSERVER_PORT: 8888
         EUREKASERVER_PORT: 8761
         CONFIGSERVER_URI: "http://config-service:8888"
         EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
-        ENCRYPT_KEY:       "IMSYMMETRIC"
+        ENCRYPT_KEY:       "SPRING_CLOUD_DEV"
