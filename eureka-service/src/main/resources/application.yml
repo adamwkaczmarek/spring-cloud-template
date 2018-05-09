@@ -2,6 +2,11 @@
 server:
   port: 8761
 
+#Setting the logging levels for the service
+logging:
+  level:
+    org.springframework: ERROR
+
 eureka:
   client:
     registerWithEureka: false

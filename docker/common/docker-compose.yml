@@ -1,5 +1,13 @@
 version: '2'
 services:
+  database:
+      image: postgres:9.5
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=dev_db
   eureka-service:
      image: akaczmarek/eureka-service:${BUILD_NAME}
      mem_limit: 3000m
@@ -26,7 +34,7 @@ services:
       - "config-service:config-service"
       - "eureka-service:eureka-service"
     environment:
-      PROFILE: "aws-dev"
+      PROFILE: "dev"
       SERVER_PORT: "5555"
       CONFIGSERVER_URI: "http://config-service:8888"
       EUREKASERVER_URI: "http://eureka-service:8761/eureka/"
@@ -43,8 +51,9 @@ services:
         - "config-service:config-service"
         - "eureka-service:eureka-service"
         - "zuul-service:zuul-service"
+        - "database:database"
       environment:
-        PROFILE: "aws-dev"
+        PROFILE: "dev"
         SERVER_PORT: "8901"
         DATABASE_PORT:     5432
         CONFIGSERVER_PORT: 8888
