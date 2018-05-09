@@ -14,20 +14,6 @@ public class FilterUtils {
     public static final String ROUTE_FILTER_TYPE = "route";
 
 
-    public String getCorrelationId() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-
-        if (ctx.getRequest().getHeader(CORRELATION_ID) != null) {
-            return ctx.getRequest().getHeader(CORRELATION_ID);
-        } else {
-            return ctx.getZuulRequestHeaders().get(CORRELATION_ID);
-        }
-    }
-
-    public void setCorrelationId(String correlationId) {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        ctx.addZuulRequestHeader(CORRELATION_ID, correlationId);
-    }
 
     public final String getAuthToken(){
         RequestContext ctx = RequestContext.getCurrentContext();
